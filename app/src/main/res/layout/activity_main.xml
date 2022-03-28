@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/heroOneName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="16dp"
+        android:text="First Hero"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/heroImgOne"
+        app:layout_constraintTop_toBottomOf="@+id/updateBtn" />
+
+    <TextView
+        android:id="@+id/heroOneTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:text="Timer"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/heroImgOne"
+        app:layout_constraintTop_toBottomOf="@+id/heroOneName" />
+
+    <Button
+        android:id="@+id/openListBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="57dp"
+        android:text="Open Hero List"
+        app:layout_constraintEnd_toStartOf="@+id/updateBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/heroTwoName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="85dp"
+        android:text="Second Hero"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/heroImgTwo"
+        app:layout_constraintTop_toBottomOf="@+id/heroOneTimer" />
+
+    <Button
+        android:id="@+id/updateBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="23dp"
+        android:text="Update Heroes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/heroTwoTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:text="Timer"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/heroImgTwo"
+        app:layout_constraintTop_toBottomOf="@+id/heroTwoName" />
+
+    <TextView
+        android:id="@+id/heroThreeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="85dp"
+        android:text="Third Hero"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/heroImgThree"
+        app:layout_constraintTop_toBottomOf="@+id/heroTwoTimer" />
+
+    <TextView
+        android:id="@+id/heroThreeTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:text="Timer"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/heroImgThree"
+        app:layout_constraintTop_toBottomOf="@+id/heroThreeName" />
+
+    <TextView
+        android:id="@+id/heroFourName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="85dp"
+        android:text="Fourth Hero"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/heroImgFour"
+        app:layout_constraintTop_toBottomOf="@+id/heroThreeTimer" />
+
+    <TextView
+        android:id="@+id/heroFourTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:text="heroFourTimer"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/heroImgFour"
+        app:layout_constraintTop_toBottomOf="@+id/heroFourName" />
+
+    <TextView
+        android:id="@+id/heroFiveName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="85dp"
+        android:text="Fifth Hero"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/heroImgFive"
+        app:layout_constraintTop_toBottomOf="@+id/heroFourTimer" />
+
+    <TextView
+        android:id="@+id/heroFiveTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="103dp"
+        android:text="heroFiveTimer"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/heroImgFive"
+        app:layout_constraintTop_toBottomOf="@+id/heroFiveName" />
+
+    <ImageButton
+        android:id="@+id/heroImgOne"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/openListBtn"
+        app:srcCompat="@drawable/colored" />
+
+    <ImageButton
+        android:id="@+id/heroImgTwo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heroImgOne"
+        app:srcCompat="@drawable/darkblue" />
+
+    <ImageButton
+        android:id="@+id/heroImgThree"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heroImgTwo"
+        app:srcCompat="@drawable/green" />
+
+    <ImageButton
+        android:id="@+id/heroImgFour"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heroImgThree"
+        app:srcCompat="@drawable/red" />
+
+    <ImageButton
+        android:id="@+id/heroImgFive"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heroImgFour"
+        app:srcCompat="@drawable/blue" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
