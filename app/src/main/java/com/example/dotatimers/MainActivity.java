@@ -1,335 +1,346 @@
 package com.example.dotatimers;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+import android.media.MediaPlayer;
 
 public class MainActivity extends AppCompatActivity {
-    public int counters[] = new int[5];
-    public int timers[] = new int[5];
+
+    private List<Hero> heroes = new ArrayList<>();
+
+    private ImageButton startTimerOne;
+    private ImageButton startTimerTwo;
+    private ImageButton startTimerThree;
+    private ImageButton startTimerFour;
+    private ImageButton startTimerFive;
+
+    private TextView timerOne;
+    private TextView timerTwo;
+    private TextView timerThree;
+    private TextView timerFour;
+    private TextView timerFive;
+
+    //hero names
+    TextView oneName;
+    TextView twoName;
+    TextView threeName;
+    TextView fourName;
+    TextView fiveName;
+
+    private Button openList;
+    private Button update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageButton startTimer = (ImageButton) findViewById(R.id.heroImgOne);
-        ImageButton startTimerTwo = (ImageButton) findViewById(R.id.heroImgTwo);
-        ImageButton startTimerThree = (ImageButton) findViewById(R.id.heroImgThree);
-        ImageButton startTimerFour = (ImageButton) findViewById(R.id.heroImgFour);
-        ImageButton startTimerFive = (ImageButton) findViewById(R.id.heroImgFive);
-        Button openList= (Button) findViewById(R.id.openListBtn);
-        Button update = (Button) findViewById(R.id.updateBtn);
-        TextView timerOne = (TextView) findViewById(R.id.heroOneTimer);
-        TextView timerTwo = (TextView) findViewById(R.id.heroTwoTimer);
-        TextView timerThree = (TextView) findViewById(R.id.heroThreeTimer);
-        TextView timerFour = (TextView) findViewById(R.id.heroFourTimer);
-        TextView timerFive = (TextView) findViewById(R.id.heroFiveTimer);
-        TextView oneName = (TextView) findViewById(R.id.heroOneName);
-        TextView twoName = (TextView) findViewById(R.id.heroTwoName);
-        TextView threeName = (TextView) findViewById(R.id.heroThreeName);
-        TextView fourName = (TextView) findViewById(R.id.heroFourName);
-        TextView fiveName = (TextView) findViewById(R.id.heroFiveName);
+        // Initialize UI components
+        startTimerOne = findViewById(R.id.heroImgOne);
+        startTimerTwo = findViewById(R.id.heroImgTwo);
+        startTimerThree = findViewById(R.id.heroImgThree);
+        startTimerFour = findViewById(R.id.heroImgFour);
+        startTimerFive = findViewById(R.id.heroImgFive);
 
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle b = getIntent().getExtras();
-                String heroes[] = b.getStringArray("heroKey");
-                String hero = b.getString("heros");
-                int imageIds[] = new int[5];
+        timerOne = findViewById(R.id.heroOneTimer);
+        timerTwo = findViewById(R.id.heroTwoTimer);
+        timerThree = findViewById(R.id.heroThreeTimer);
+        timerFour = findViewById(R.id.heroFourTimer);
+        timerFive = findViewById(R.id.heroFiveTimer);
 
-                int c = 0;
-                while(c<5) {
-                    if (hero.contains("Abaddon")) {
-                        timers[c] = 40;
-                        imageIds[c] = R.drawable.abaddon;
-                        c++;
-                    }
-                    if (hero.contains("Alchemist")) {
-                        timers[c] = 55;
-                        imageIds[c] = R.drawable.alchemist;
-                        c++;
-                    }
-                    if (hero.contains("Axe")) {
-                        timers[c] = 70;
-                        imageIds[c] = R.drawable.axe;
-                        c++;
-                    }
-                    if (hero.contains("Beastmaster")) {
-                        timers[c] = 60;
-                        imageIds[c] = R.drawable.beastmaster;
-                        c++;
-                    }
-                    if (hero.contains("Brewmaster")) {
-                        timers[c] = 120;
-                        imageIds[c] = R.drawable.brewmaster;
-                        c++;
-                    }
-                    if (hero.contains("Centaur")) {
-                        timers[c] = 100;
-                        imageIds[c] = R.drawable.centaur;
-                        c++;
-                    }
-                    if (hero.contains("Chaos Knight")) {
-                        timers[c] = 75;
-                        imageIds[c] = R.drawable.chaosknight;
-                        c++;
-                    }
-                    if (hero.contains("Clockwerk")) {
-                        timers[c] = 30;
-                        imageIds[c] = R.drawable.clockwerk;
-                        c++;
-                    }
-                    if (hero.contains("Dawnbreaker")) {
-                        timers[c] = 100;
-                        imageIds[c] = R.drawable.dawnbreaker;
-                        c++;
-                    }
-                    if (hero.contains("Doom")) {
-                        timers[c] = 145;
-                        imageIds[c] = R.drawable.doom;
-                        c++;
-                    }
-                    if (hero.contains("Dragon Knight")) {
-                        timers[c] = 105;
-                        imageIds[c] = R.drawable.dragonknight;
-                        c++;
-                    }
-                    if (hero.contains("Earth Spirit")) {
-                        timers[c] = 80;
-                        //imageIds[c] = R.drawable.earthspirit;
-                        c++;
-                    }
-                    if (hero.contains("Earth Shaker")) {
-                        timers[c] = 110;
-                        imageIds[c] = R.drawable.earthshaker;
-                        c++;
-                    }
-                    if (hero.contains("Elder Titan")) {
-                        timers[c] = 100;
-                        imageIds[c] = R.drawable.eldertitan;
-                        c++;
-                    }
-                    if (hero.contains("IO")) {
-                        timers[c] = 80;
-                        imageIds[c] = R.drawable.io;
-                        c++;
-                    }
-                    if (hero.contains("Kunkka")) {
-                        timers[c] = 60;
-                        imageIds[c] = R.drawable.kunkka;
-                        c++;
-                    }
-                    if (hero.contains("Legion Commander")) {
-                        timers[c] = 50;
-                        imageIds[c] = R.drawable.legioncommander;
-                        c++;
-                    }
-                    if (hero.contains("Lifestealer")) {
-                        timers[c] = 50;
-                        imageIds[c] = R.drawable.lifestealer;
-                        c++;
-                    }
-                    if (hero.contains("Lycan")) {
-                        timers[c] = 95;
-                        imageIds[c] = R.drawable.lycan;
-                        c++;
-                    }
-                    if (hero.contains("Magnus")) {
-                        timers[c] = 130;
-                        imageIds[c] = R.drawable.magnus;
-                        c++;
-                    }
-                    if (hero.contains("Marci")) {
-                        timers[c] = 70;
-                        imageIds[c] = R.drawable.marci;
-                        c++;
-                    }
-                    if (hero.contains("Mars")) {
-                        timers[c] = 90;
-                        imageIds[c] = R.drawable.mars;
-                        c++;
-                    }
-                    if (hero.contains("Night Stalker")) {
-                        timers[c] = 130;
-                        imageIds[c] = R.drawable.nightstalker;
-                        c++;
-                    }
-                    if (hero.contains("Omni Knight")) {
-                        timers[c] = 120;
-                        imageIds[c] = R.drawable.omniknight;
-                        c++;
-                    }
-                    if (hero.contains("Phoenix")) {
-                        timers[c] = 120;
-                        imageIds[c] = R.drawable.phoenix;
-                        c++;
-                    }
-                    if (hero.contains("Primal Beast")) {
-                        timers[c] = 24;
-                        imageIds[c] = R.drawable.primalbeast;
-                        c++;
-                    }
-                    if (hero.contains("Sand King")) {
-                        timers[c] = 100;
-                        imageIds[c] = R.drawable.sandking;
-                        c++;
-                    }
-                    if (hero.contains("Snapfire")) {
-                        timers[c] = 100;
-                        imageIds[c] = R.drawable.snapfire;
-                        c++;
-                    }
-                    if (hero.contains("Spirit Breaker")) {
-                        timers[c] = 50;
-                        imageIds[c] = R.drawable.spiritbreaker;
-                        c++;
-                    }
-                    if (hero.contains("Sven")) {
-                        timers[c] = 110;
-                        imageIds[c] = R.drawable.sven;
-                        c++;
-                    }
-                    if (hero.contains("Tidehunter")) {
-                        timers[c] = 150;
-                        imageIds[c] = R.drawable.tidehunter;
-                        c++;
-                    }
-                    if (hero.contains("Treant Protector")) {
-                        timers[c] = 100;
-                        imageIds[c] = R.drawable.treant;
-                        c++;
-                    }
-                    if (hero.contains("Underlord")) {
-                        timers[c] = 100;
-                        imageIds[c] = R.drawable.underlord;
-                        c++;
-                    }
-                    if (hero.contains("Undying")) {
-                        timers[c] = 125;
-                        imageIds[c] = R.drawable.undying;
-                        c++;
-                    }
-                    if (hero.contains("Wraith King")) {
-                        timers[c] = 60;
-                        imageIds[c] = R.drawable.wraithking;
-                        c++;
-                    }
+        oneName = (TextView) findViewById(R.id.heroOneName);
+        twoName = (TextView) findViewById(R.id.heroTwoName);
+        threeName = (TextView) findViewById(R.id.heroThreeName);
+        fourName = (TextView) findViewById(R.id.heroFourName);
+        fiveName = (TextView) findViewById(R.id.heroFiveName);
+
+
+        openList = findViewById(R.id.openListBtn);
+        update = findViewById(R.id.updateBtn);
+
+        // Set click listeners
+        openList.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, HeroSelection.class)));
+
+        update.setOnClickListener(view -> updateHeroData());
+
+        startTimerOne.setOnClickListener(view -> startHeroTimer(0));
+        startTimerTwo.setOnClickListener(view -> startHeroTimer(1));
+        startTimerThree.setOnClickListener(view -> startHeroTimer(2));
+        startTimerFour.setOnClickListener(view -> startHeroTimer(3));
+        startTimerFive.setOnClickListener(view -> startHeroTimer(4));
+    }
+
+    private void updateHeroData() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String[] heroNames = bundle.getStringArray("heroKey");
+
+            if (heroNames != null) {
+                heroes.clear();
+                for (String heroName : heroNames) {
+                    Hero hero = createHero(heroName);
+                    heroes.add(hero);
                 }
-                oneName.setText(heroes[0]);
-                twoName.setText(heroes[1]);
-                threeName.setText(heroes[2]);
-                fourName.setText(heroes[3]);
-                fiveName.setText(heroes[4]);
 
-                startTimer.setImageResource(imageIds[0]);
-                startTimerTwo.setImageResource(imageIds[1]);
-                startTimerThree.setImageResource(imageIds[2]);
-                startTimerFour.setImageResource(imageIds[3]);
-                startTimerFive.setImageResource(imageIds[4]);
+                displayHeroData();
+                updateHeroNames(heroNames);  // Add this line
             }
-        });
+        }
+    }
 
-        startTimer.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                counters[0] = 0;
-                new CountDownTimer( timers[0]*1000, 1000){
-                    public void onTick(long millisUntilFinished){
-                        timerOne.setText(String.valueOf(counters[0]) + "/" + timers[0]);
-                        counters[0]++;
-                    }
-                    public  void onFinish(){
-                        timerOne.setText("COOLDOWN IS OVER");
-                    }
-                }.start();
-            }
-        });
+    private void updateHeroNames(String[] heroNames) {
+        if (heroNames.length > 0) oneName.setText(heroNames[0]);
+        if (heroNames.length > 1) twoName.setText(heroNames[1]);
+        if (heroNames.length > 2) threeName.setText(heroNames[2]);
+        if (heroNames.length > 3) fourName.setText(heroNames[3]);
+        if (heroNames.length > 4) fiveName.setText(heroNames[4]);
+    }
 
-        startTimerTwo.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                counters[1] = 0;
-                new CountDownTimer( timers[1]*1000, 1000){
-                    public void onTick(long millisUntilFinished){
-                        timerTwo.setText(String.valueOf(counters[1]) + "/" + timers[1]);
-                        counters[1]++;
-                    }
-                    public  void onFinish(){
-                        timerTwo.setText("COOLDOWN IS OVER");
-                    }
-                }.start();
-            }
-        });
 
-        startTimerThree.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                counters[2] = 0;
-                new CountDownTimer( timers[2]*1000, 1000){
-                    public void onTick(long millisUntilFinished){
-                        timerThree.setText(String.valueOf(counters[2]) + "/" + timers[2]);
-                        counters[2]++;
-                    }
-                    public  void onFinish(){
-                        timerThree.setText("COOLDOWN IS OVER");
-                    }
-                }.start();
-            }
-        });
+    private void displayHeroData() {
+        timerOne.setText(getTimerText(0));
+        timerTwo.setText(getTimerText(1));
+        timerThree.setText(getTimerText(2));
+        timerFour.setText(getTimerText(3));
+        timerFive.setText(getTimerText(4));
 
-        startTimerFour.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                counters[3] = 0;
-                new CountDownTimer( timers[3]*1000, 1000){
-                    public void onTick(long millisUntilFinished){
-                        timerFour.setText(String.valueOf(counters[3]) + "/" + timers[3]);
-                        counters[3]++;
-                    }
-                    public  void onFinish(){
-                        timerFour.setText("COOLDOWN IS OVER");
-                    }
-                }.start();
-            }
-        });
+        startTimerOne.setImageResource(getHeroImageId(0));
+        startTimerTwo.setImageResource(getHeroImageId(1));
+        startTimerThree.setImageResource(getHeroImageId(2));
+        startTimerFour.setImageResource(getHeroImageId(3));
+        startTimerFive.setImageResource(getHeroImageId(4));
+    }
 
-        startTimerFive.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                counters[4] = 0;
-                new CountDownTimer( timers[4]*1000, 1000){
-                    public void onTick(long millisUntilFinished){
-                        timerFive.setText(String.valueOf(counters[4]) + "/" + timers[4]);
-                        counters[4]++;
-                    }
-                    public  void onFinish(){
-                        timerFive.setText("COOLDOWN IS OVER");
-                    }
-                }.start();
-            }
-        });
+    private void startHeroTimer(int index) {
+        Hero hero = heroes.get(index);
 
-        openList.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, HeroSelection.class));
+        new CountDownTimer(hero.getTimer() * 1000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                hero.incrementCounter();
+                updateTimerText(index);
             }
-        });
+
+            public void onFinish() {
+                updateTimerText(index);
+                setCooldownOverText(index);
+            }
+        }.start();
+    }
+
+    private void setCooldownOverText(int index) {
+        switch (index) {
+            case 0:
+                timerOne.setText("COOLDOWN IS OVER");
+                break;
+            case 1:
+                timerTwo.setText("COOLDOWN IS OVER");
+                break;
+            case 2:
+                timerThree.setText("COOLDOWN IS OVER");
+                break;
+            case 3:
+                timerFour.setText("COOLDOWN IS OVER");
+                break;
+            case 4:
+                timerFive.setText("COOLDOWN IS OVER");
+                break;
+        }
+        playSound();
+    }
+
+    private void playSound() {
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.expiredtimer);
+        mediaPlayer.setOnCompletionListener(mp -> mp.release()); // Release media player resources after sound is played
+        mediaPlayer.start();
+    }
+
+    private String getTimerText(int index) {
+        Hero hero = heroes.get(index);
+        return hero.getCounter() + "/" + hero.getTimer();
+    }
+
+    private void updateTimerText(int index) {
+        String timerText = getTimerText(index);
+        switch (index) {
+            case 0:
+                timerOne.setText(timerText);
+                break;
+            case 1:
+                timerTwo.setText(timerText);
+                break;
+            case 2:
+                timerThree.setText(timerText);
+                break;
+            case 3:
+                timerFour.setText(timerText);
+                break;
+            case 4:
+                timerFive.setText(timerText);
+                break;
+        }
+    }
+
+    private int getHeroImageId(int index) {
+        Hero hero = heroes.get(index);
+        return hero.getImageId();
+    }
+
+    private Hero createHero(String heroName) {
+        int timer = 0;
+        int imageId = R.drawable.colored;
+
+        switch (heroName) {
+            case "Abaddon":
+                timer = 40;
+                imageId = R.drawable.abaddon;
+                break;
+            case "Alchemist":
+                timer = 55;
+                imageId = R.drawable.alchemist;
+                break;
+            case "Axe":
+                timer = 70;
+                imageId = R.drawable.axe;
+                break;
+            case "Beastmaster":
+                timer = 60;
+                imageId = R.drawable.beastmaster;
+                break;
+            case "Brewmaster":
+                timer = 120;
+                imageId = R.drawable.brewmaster;
+                break;
+            case "Centaur":
+                timer = 100;
+                imageId = R.drawable.centaur;
+                break;
+            case "Chaos Knight":
+                timer = 75;
+                imageId = R.drawable.chaosknight;
+                break;
+            case "Clockwerk":
+                timer = 30;
+                imageId = R.drawable.clockwerk;
+                break;
+            case "Dawnbreaker":
+                timer = 100;
+                imageId = R.drawable.dawnbreaker;
+                break;
+            case "Doom":
+                timer = 145;
+                imageId = R.drawable.doom;
+                break;
+            case "Dragon Knight":
+                timer = 105;
+                imageId = R.drawable.dragonknight;
+                break;
+            case "Earth Spirit":
+                timer = 80;
+                imageId = R.drawable.colored;
+                break;
+            case "Earth Shaker":
+                timer = 110;
+                imageId = R.drawable.earthshaker;
+                break;
+            case "Elder Titan":
+                timer = 100;
+                imageId = R.drawable.eldertitan;
+                break;
+            case "IO":
+                timer = 80;
+                imageId = R.drawable.io;
+                break;
+            case "Kunkka":
+                timer = 60;
+                imageId = R.drawable.kunkka;
+                break;
+            case "Legion Commander":
+                timer = 50;
+                imageId = R.drawable.legioncommander;
+                break;
+            case "Lifestealer":
+                timer = 50;
+                imageId = R.drawable.lifestealer;
+                break;
+            case "Lycan":
+                timer = 95;
+                imageId = R.drawable.lycan;
+                break;
+            case "Magnus":
+                timer = 130;
+                imageId = R.drawable.magnus;
+                break;
+            case "Marci":
+                timer = 70;
+                imageId = R.drawable.marci;
+                break;
+            case "Mars":
+                timer = 90;
+                imageId = R.drawable.mars;
+                break;
+            case "Night Stalker":
+                timer = 130;
+                imageId = R.drawable.nightstalker;
+                break;
+            case "Omni Knight":
+                timer = 120;
+                imageId = R.drawable.omniknight;
+                break;
+            case "Phoenix":
+                timer = 120;
+                imageId = R.drawable.phoenix;
+                break;
+            case "Primal Beast":
+                timer = 24;
+                imageId = R.drawable.primalbeast;
+                break;
+            case "Sand King":
+                timer = 100;
+                imageId = R.drawable.sandking;
+                break;
+            case "Snapfire":
+                timer = 100;
+                imageId = R.drawable.snapfire;
+                break;
+            case "Spirit Breaker":
+                timer = 50;
+                imageId = R.drawable.spiritbreaker;
+                break;
+            case "Sven":
+                timer = 110;
+                imageId = R.drawable.sven;
+                break;
+            case "Tidehunter":
+                timer = 150;
+                imageId = R.drawable.tidehunter;
+                break;
+            case "Treant Protector":
+                timer = 100;
+                imageId = R.drawable.treant;
+                break;
+            case "Underlord":
+                timer = 100;
+                imageId = R.drawable.underlord;
+                break;
+            case "Undying":
+                timer = 125;
+                imageId = R.drawable.undying;
+                break;
+            case "Wraith King":
+                timer = 60;
+                imageId = R.drawable.wraithking;
+                break;
+        }
+        return new Hero(heroName, timer, imageId);
     }
 }
